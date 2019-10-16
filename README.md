@@ -10,11 +10,17 @@ a. Given the variable `userNameOne` below, print *"The username is Test User"*. 
 ```swift
 var userNameOne: String? = "Test User"
 ```
+if let name = userNameOne {
+    print("The username is \(name)")
+}
 
 b. Given the variable `userNameTwo` below, print *"The username is undefined"*.  Use the *nil coalescing operator* (`??`).
-
+var userNameTwo: String? = nil
 ```swift
 var userNameTwo: String? = nil
+let username = userNameTwo ?? "The username is undefined"
+
+print(username)
 ```
 
 ## Question 2
@@ -25,14 +31,23 @@ a. Given the variables `rectOneWidth` and `rectOneHeight` below, print "The area
 var rectOneWidth: Double? = 5
 var rectOneHeight: Double? = 10
 ```
-
+if let oneWidth = rectOneWidth , let oneHeight = rectOneHeight {
+    let area = oneWidth * oneHeight
+    print(area)
+    print("The area of rectOne is \(Int(area))")
+}
 b. Given the variables `rectTwoWidth` and `rectTwoHeight` below, print "The are of rectTwo is not able to be calculated".  Use *Optional Binding* (`if let`) to print this message.
 
 ```swift
 var rectTwoWidth: Double? = nil
 var rectTwoHeight: Double? = nil
 ```
-
+if rectTwoWidth != nil && rectTwoHeight != nil {
+    let area2 = rectTwoWidth! * rectTwoHeight!
+    print(area2)
+} else {
+    print("The area of rectTwo is not able to be calculated")
+}
 ## Question 3
 
 a. Given the variables `userOneName`, `userOneAge`, and `userOneHeight` below, write code that prints "Hello Anne!  You are 15 years old and 5.8 feet tall" (1 foot = 12 inches).  Use optional binding.
@@ -44,6 +59,15 @@ var userOneAge: Int? = 15
 var userOneHeight: Double? = 70
 ```
 
+
+if let userName = userOneName {
+    if let userAge = userOneAge {
+        if let userHeight = userOneHeight {
+           let heightInUS = String(format: "%.2f", userHeight / 12)
+            print("Hello \(userName)! You are \(userAge) years old and \(heightInUS) feet tall")
+        }
+    }
+}
 b. Given the variables `userTwoName`, `userTwoAge` and `userTwoHeight` below, write code that prints "Hello user!  You are 15 years old and I don't know how tall you are".  Use optional binding
 
 ```swift
@@ -51,7 +75,17 @@ var userTwoName: String? = nil
 var userTwoAge: Int? = 15
 var userTwoHeight: Double? = nil
 ```
+var userTwoName: String? = nil
+var userTwoAge: Int? = 15
+var userTwoHeight: Double? = nil
 
+if let nameTwo = userTwoName,
+let ageTwo = userTwoAge,
+let heightTwo = userTwoHeight {
+    print("Hello \(nameTwo)! You are \(ageTwo) years old and \(heightTwo) feet tall")
+} else {
+    print("Hello user you are \(userTwoAge ?? 18) years old and I dont know how tall you are.")
+}
 
 ## Question 4
 
